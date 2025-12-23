@@ -5,9 +5,11 @@ import { View, StyleSheet, ActivityIndicator } from "react-native";
 import * as ScreenOrientation from "expo-screen-orientation";
 import YoutubeIframe from "react-native-youtube-iframe";
 import { BottomButton } from "@/components/bottom-button";
+import { useTranslation } from "react-i18next";
 
 export default function Tutorial() {
   const [isVideoReady, setIsVideoReady] = useState(false);
+  const { i18n } = useTranslation();
 
   const onFullScreenChange = useCallback((isFullScreen: boolean) => {
     if (isFullScreen) {
@@ -16,7 +18,7 @@ export default function Tutorial() {
       ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
     }
   }, []);
-
+  
   return (
     <View className="flex-1 bg-zinc-950 px-8 relative items-center">
       <View className="flex w-full">
@@ -33,7 +35,7 @@ export default function Tutorial() {
         )}
 
         <YoutubeIframe
-          videoId="lJjAqZ9smIA"
+          videoId={i18n.language === "es" ? "VOlpw90eKPo" : "lJjAqZ9smIA"}
           onFullScreenChange={onFullScreenChange}
           height={200}
           width={340}
